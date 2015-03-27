@@ -1,6 +1,6 @@
 <?
 
-namespace ReservatCore\Interfaces;
+namespace Reservat\Core\Interfaces;
 
 interface EntityInterface
 {

@@ -1,8 +1,8 @@
 <?
 
-namespace ReservatCore\Interfaces;
+namespace Reservat\Core\Interfaces;
 
-use ReservatCore\Interfaces\EntityInterface;
+use Reservat\Core\Interfaces\EntityInterface;
 
 interface DataMapperInterface
 {
