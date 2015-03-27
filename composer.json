@@ -1,0 +1,22 @@
+{
+    "name": "reservat/core",
+    "description": "Reservat Core Interfaces",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Luke Steadman",
+            "email": "luke@steadweb.co.uk"
+        },
+        {
+            "name": "Paul Westerdale",
+            "email": "paul@threadstud.io"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "ReservatCore\\" : "src/ReservatCore"
+        }
+    },
+    "require": {}
+}
