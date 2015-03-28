@@ -18,5 +18,8 @@
             "Reservat\\Core\\" : "src/Core"
         }
     },
-    "require": {}
+    "require": {
+        "monolog/monolog": "~1.0",
+        "elasticsearch/elasticsearch": "~1.0"
+    }
 }
