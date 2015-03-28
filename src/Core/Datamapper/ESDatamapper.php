@@ -1,6 +1,6 @@
 <?
 
-namespace Reservat\Datamapper;
+namespace Reservat\Core\Datamapper;
 
 use Reservat\Core\Interfaces\EntityInterface;
 
