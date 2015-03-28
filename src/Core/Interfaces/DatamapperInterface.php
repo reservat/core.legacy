@@ -4,7 +4,7 @@ namespace Reservat\Core\Interfaces;
 
 use Reservat\Core\Interfaces\EntityInterface;
 
-interface DataMapperInterface
+interface DatamapperInterface
 {
 	public function insert(EntityInterface $entity);
 	public function update(EntityInterface $entity);
