@@ -1,6 +1,6 @@
 <?php
 
-namespace Bookings\Core;
+namespace Reservat\Core;
 
 class Config implements \ArrayAccess
 {
