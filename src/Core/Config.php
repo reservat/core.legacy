@@ -1,16 +1,16 @@
-<?
+<?php
 
-namespace Reservat\Core;
+namespace Bookings\Core;
 
 class Config implements \ArrayAccess
 {
 
-	protected $_config = [];
+    protected $_config = [];
 
-	public function __construct()
+    public function __construct($path, $file = 'config.php')
     {
-		$this->_config = require_once __DIR__ . '/../../config.php';
-	}
+        $this->_config = include($path.$file);
+    }
 
     public function &__get ($key) 
     {
@@ -36,7 +36,7 @@ class Config implements \ArrayAccess
     {
         if(is_null($offset))
         {
-            $this->_config[] = $value;
+            $this->_config[$value] = null;
         } else {
             $this->_config[$offset] = $value;
         }
