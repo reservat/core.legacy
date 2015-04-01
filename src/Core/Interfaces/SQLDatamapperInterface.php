@@ -4,7 +4,7 @@ namespace Reservat\Core\Interfaces;
 
 use Reservat\Core\Interfaces\EntityInterface;
 
-interface DatamapperInterface
+interface SQLDatamapperInterface
 {
 	/**
      * Return the name of the table we're interacting with
