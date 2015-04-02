@@ -53,12 +53,12 @@ class ESDatamapper
     	$this->save($entity);
     }
 
-    public function update(EntityInterface $entity)
+    public function update(EntityInterface $entity, $id)
     {
     	$this->save($entity);
     }
 
-    public function save(EntityInterface $entity)
+    public function save(EntityInterface $entity, $id = null)
     {
     	$params = [];
 		$params['body']  = $entity->toArray();
@@ -76,7 +76,7 @@ class ESDatamapper
 		}
     }
 
-    public function delete(EntityInterface $entity)
+    public function delete(EntityInterface $entity, $id)
     {
 
     }
