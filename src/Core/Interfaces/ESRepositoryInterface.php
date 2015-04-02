@@ -1,10 +1,9 @@
-<?
+<?php
 
 namespace Reservat\Core\Interfaces;
 
-interface RepositoryInterface 
+interface ESRepositoryInterface 
 {
-	public function table();
 	public function getById($id);
 	public function getAll();
 }
