@@ -2,8 +2,8 @@
 
 namespace Reservat\Core\Interfaces;
 
-interface ESRepositoryInterface 
+interface ESRepositoryInterface
 {
-	public function getById($id);
-	public function getAll();
+    public function getById($id);
+    public function getAll();
 }

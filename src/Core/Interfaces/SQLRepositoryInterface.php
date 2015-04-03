@@ -2,9 +2,9 @@
 
 namespace Reservat\Core\Interfaces;
 
-interface SQLRepositoryInterface 
+interface SQLRepositoryInterface
 {
-	public function table();
-	public function getById($id);
-	public function getAll();
+    public function table();
+    public function getById($id);
+    public function getAll();
 }

@@ -6,7 +6,7 @@ use Reservat\Core\Interfaces\EntityInterface;
 
 interface ESDatamapperInterface
 {
-	/**
+    /**
      * Return the name of the table we're interacting with
      *
      * @return string

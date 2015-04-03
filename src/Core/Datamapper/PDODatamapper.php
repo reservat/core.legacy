@@ -1,4 +1,4 @@
-<?
+<?php
 
 namespace Reservat\Core\Datamapper;
 
@@ -7,7 +7,7 @@ use Reservat\Core\Interfaces\EntityInterface;
 class PDODatamapper
 {
 
-	/**
+    /**
      * @var \PDO
      */
     protected $db = null;
@@ -15,7 +15,7 @@ class PDODatamapper
     /**
      * Pass an instance of PDO through
      *
-     * @param \PDO $pdo
+     * @param  \PDO $pdo
      * @throws \PDOException
      */
     public function __construct(\PDO $pdo)
@@ -45,10 +45,10 @@ class PDODatamapper
      */
     public function update(EntityInterface $entity, $id)
     {
-        $update = function() use($entity) {
+        $update = function () use ($entity) {
             $sql = 'UPDATE ' . $this->table() . ' SET ';
 
-            foreach($entity->toArray() as $key => $value) {
+            foreach ($entity->toArray() as $key => $value) {
                 $sql .= $key . ' = ' . '?, ';
             }
 
@@ -66,11 +66,11 @@ class PDODatamapper
      * Attempt to update the entity if the $id is passed, otherwise insert.
      *
      * @param EntityInterface $entity
-     * @param null $id
+     * @param null            $id
      */
     public function save(EntityInterface $entity, $id = null)
     {
-        if(!is_null($id)) {
+        if (!is_null($id)) {
             $this->update($entity, $id);
         } else {
             $this->insert($entity);
@@ -92,15 +92,15 @@ class PDODatamapper
     /**
      * Execute the query we build
      *
-     * @param $query
-     * @param $values
+     * @param  $query
+     * @param  $values
      * @return bool
      */
     private function execute($query, array $values)
     {
         $this->db->beginTransaction();
 
-        if($this->db->prepare($query)->execute($values)) {
+        if ($this->db->prepare($query)->execute($values)) {
             $this->db->commit();
             return true;
         }
@@ -108,5 +108,4 @@ class PDODatamapper
         $this->db->rollBack();
         return false;
     }
-
 }

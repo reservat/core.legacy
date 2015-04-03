@@ -2,31 +2,30 @@
 
 namespace Reservat\Core;
 
-class ApiError extends ApiResponse 
+class ApiError extends ApiResponse
 {
 
-	protected $_code = '400';
+    protected $code = '400';
 
-	public function buildBody()
-	{
+    public function buildBody()
+    {
 
-		$errors = [];
+        $errors = [];
 
-		foreach($this->getData() as $error){
-			if($error->field){
-				$errors[$error->field] = $error;
-			} else {
-				$errors[] = $error;
-			}
-		}
+        foreach ($this->getData() as $error) {
+            if ($error->field) {
+                $errors[$error->field] = $error;
+            } else {
+                $errors[] = $error;
+            }
+        }
 
-		$body = [
-			'status' => $this->getCode(),
-			'errors' => $errors
-		];
+        $body = [
+        'status' => $this->getCode(),
+        'errors' => $errors
+        ];
 
-		return $body;
+        return $body;
 
-	}
-	
+    }
 }
