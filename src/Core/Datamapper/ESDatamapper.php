@@ -32,22 +32,22 @@ class ESDatamapper
 
     public function getMapping()
     {
-        return $this->_mapping;
+        return $this->mapping;
     }
 
     public static function getIndex()
     {
-        return static::$_index;
+        return static::$index;
     }
 
     public static function getType()
     {
-        return static::$_type;
+        return static::$type;
     }
 
     public static function getId()
     {
-        return static::$_id;
+        return static::$id;
     }
 
     public function insert(EntityInterface $entity)
