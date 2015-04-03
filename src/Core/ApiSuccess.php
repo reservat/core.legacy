@@ -5,19 +5,18 @@ namespace Reservat\Core;
 class ApiSuccess extends ApiResponse
 {
 
-	protected $_code = '200';
-	protected $_data = [];
+    protected $code = '200';
+    protected $data = [];
 
-	public function buildBody()
-	{
+    public function buildBody()
+    {
 
-		$body = [
-			'status' => $this->getCode(),
-			'data' => $this->getData()
-		];
+        $body = [
+        'status' => $this->getCode(),
+        'data' => $this->getData()
+        ];
 
-		return $body;
+        return $body;
 
-	}
-
+    }
 }
