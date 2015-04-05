@@ -45,11 +45,13 @@ class PDODatamapper
      */
     public function update(EntityInterface $entity, $id)
     {
-        $update = function () use ($entity) {
+        $update = function() use($entity) {
             $sql = 'UPDATE ' . $this->table() . ' SET ';
+            $sep = null;
 
-            foreach ($entity->toArray() as $key => $value) {
-                $sql .= $key . ' = ' . '?, ';
+            foreach($entity->toArray() as $key => $value) {
+                $sql .= $sep . $key . ' = ' . '?';
+                $sep = ', ';
             }
 
             $sql .= ' WHERE id = ?';
