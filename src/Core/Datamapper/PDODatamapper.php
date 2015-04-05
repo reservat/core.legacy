@@ -6,16 +6,16 @@ use Reservat\Core\Interfaces\EntityInterface;
 
 class PDODatamapper
 {
-
     /**
      * @var \PDO
      */
     protected $db = null;
 
     /**
-     * Pass an instance of PDO through
+     * Pass an instance of PDO through.
      *
-     * @param  \PDO $pdo
+     * @param \PDO $pdo
+     *
      * @throws \PDOException
      */
     public function __construct(\PDO $pdo)
@@ -24,33 +24,33 @@ class PDODatamapper
     }
 
     /**
-     * Attempt to insert a record into the Storage engine
+     * Attempt to insert a record into the Storage engine.
      *
      * @param EntityInterface $entity
      */
     public function insert(EntityInterface $entity)
     {
         $params = trim(str_repeat('?,', count($entity->toArray())), ',');
-        $query  = "INSERT INTO " . $this->table() . " (". implode(', ', array_keys($entity->toArray())).") ";
-        $query .= "VALUES (".$params.")";
+        $query  = 'INSERT INTO '.$this->table().' ('.implode(', ', array_keys($entity->toArray())).') ';
+        $query .= 'VALUES ('.$params.')';
 
         $this->execute($query, array_values($entity->toArray()));
     }
 
     /**
-     * Update the entity
+     * Update the entity.
      *
      * @param EntityInterface $entity
      * @param $id
      */
     public function update(EntityInterface $entity, $id)
     {
-        $update = function() use($entity) {
-            $sql = 'UPDATE ' . $this->table() . ' SET ';
+        $update = function () use ($entity) {
+            $sql = 'UPDATE '.$this->table().' SET ';
             $sep = null;
 
-            foreach($entity->toArray() as $key => $value) {
-                $sql .= $sep . $key . ' = ' . '?';
+            foreach ($entity->toArray() as $key => $value) {
+                $sql .= $sep.$key.' = '.'?';
                 $sep = ', ';
             }
 
@@ -80,22 +80,23 @@ class PDODatamapper
     }
 
     /**
-     * Attempt to delete the entity
+     * Attempt to delete the entity.
      *
      * @param EntityInterface $entity
      * @param $id
      */
     public function delete(EntityInterface $entity, $id)
     {
-        $query = 'DELETE FROM ' . $this->table() . ' WHERE id = ?';
+        $query = 'DELETE FROM '.$this->table().' WHERE id = ?';
         $this->execute($query, array($id));
     }
 
     /**
-     * Execute the query we build
+     * Execute the query we build.
      *
      * @param  $query
      * @param  $values
+     *
      * @return bool
      */
     private function execute($query, array $values)
@@ -104,10 +105,12 @@ class PDODatamapper
 
         if ($this->db->prepare($query)->execute($values)) {
             $this->db->commit();
+
             return true;
         }
 
         $this->db->rollBack();
+
         return false;
     }
 }
