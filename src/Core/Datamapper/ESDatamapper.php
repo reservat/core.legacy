@@ -4,7 +4,7 @@ namespace Reservat\Core\Datamapper;
 
 use Reservat\Core\Interfaces\EntityInterface;
 
-class ESDatamapper
+abstract class ESDatamapper
 {
 
     protected $client;
