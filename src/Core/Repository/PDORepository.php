@@ -1,6 +1,6 @@
 <?php
 
-namespace Reservat\Repository;
+namespace Reservat\Core\Repository;
 
 use Reservat\Core\Interfaces\SQLRepositoryInterface;
 
