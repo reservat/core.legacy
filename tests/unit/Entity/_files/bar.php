@@ -1,6 +1,6 @@
 <?php
 
-namespace Reservat\Test;
+namespace Reservat;
 
 class Bar extends \Reservat\Core\Entity
 {
