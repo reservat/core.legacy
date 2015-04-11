@@ -7,6 +7,16 @@ use Reservat\Core\Interfaces\SQLRepositoryInterface;
 abstract class PDORepository implements SQLRepositoryInterface, \Iterator
 {
     /**
+     * @var array
+     * A map of fields that can be filled when
+     * filling an entity from the database.
+     * id is hardcoded as it is a private property.
+     * properties that match exactly their db name need not be added.
+     * db_name => property_name
+     */
+    public static $fillable = array('id' => 'id');
+
+    /**
      * @var null|\PDO
      */
     protected $db = null;
@@ -110,6 +120,25 @@ abstract class PDORepository implements SQLRepositoryInterface, \Iterator
         }
 
         return $query;
+    }
+
+    public function getResults($entity)
+    {
+        $entityClass = '\Reservat\\' . $entity;
+
+        if(!class_exists($entityClass)){
+            throw new \InvalidArgumentException('Entity passed must exist. could not find class Reservat\\' . $entity);
+        }
+
+        if(count($this->records) > 1){
+            $results = [];
+            foreach($this->records as $record){
+                $results[] = $entityClass::create($record);
+            }
+            return $results;
+        } else {
+            return $entityClass::create($this->current());
+        }
     }
 
     /**

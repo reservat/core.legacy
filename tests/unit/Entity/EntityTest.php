@@ -11,11 +11,12 @@ class EntityTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         require_once(__DIR__.'/_files/bar.php');
+        require_once(__DIR__.'/_files/BarRepository.php');
     }
 
     public function testCreate()
     {
-        $bar = \Reservat\Test\Bar::create([
+        $bar = \Reservat\Bar::create([
             'name' => 'Paul Westerdale',
             'email' => 'paul@westerdale.me'
         ]);
@@ -28,7 +29,7 @@ class EntityTest extends \PHPUnit_Framework_TestCase
     {
 
         $this->setExpectedException('InvalidArgumentException');
-        $bar = \Reservat\Test\Bar::create([
+        $bar = \Reservat\Bar::create([
             'name' => 'Paul Westerdale',
             'email' => 'paul@westerdale.me',
             'shoesize' => 21
