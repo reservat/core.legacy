@@ -92,7 +92,7 @@ abstract class PDORepository implements SQLRepositoryInterface, \Iterator
      *
      * @return bool
      */
-    private function query($data = array(), $limit = 10)
+    protected function query($data = array(), $limit = 10)
     {
         $query = $this->selectQuery($data).' LIMIT '.intval($limit);
         $db = $this->db->prepare($query);
@@ -107,7 +107,7 @@ abstract class PDORepository implements SQLRepositoryInterface, \Iterator
      *
      * @return string
      */
-    private function selectQuery(array $data)
+    protected function selectQuery(array $data)
     {
         $query = 'SELECT * FROM '.$this->table();
 
