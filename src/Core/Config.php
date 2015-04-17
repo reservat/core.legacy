@@ -17,7 +17,8 @@ class Config implements \ArrayAccess
 
     public function &__get($key)
     {
-        $conf = isset($config[$key]) ? $config[$key] : getenv($key);
+        $conf = isset($this->config[$key]) ? $this->config[$key] : getenv($key);
+        $conf = $conf ? $conf: null;
         return $conf;
     }
 
