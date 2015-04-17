@@ -7,9 +7,10 @@ use Elasticsearch\Client;
 class Elastic
 {
 
-    public function __construct($details)
+    public function __construct($di)
     {
-        $params = ['hosts' => ['http://'.$details['user'].':'.$details['pass'].'@'.$details['host']]];
+        $config = $di->get('config');
+        $params = ['hosts' => ['http://'.$config->ES_USER.':'.$config->ES_PASSWORD.'@'.$config->ES_HOST]];
         $this->_client = new Client($params);
     }
 

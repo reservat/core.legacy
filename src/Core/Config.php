@@ -7,14 +7,15 @@ class Config implements \ArrayAccess
 
     protected $config = [];
 
-    public function __construct($path, $file = 'config.php')
+    public function __construct($path)
     {
-        $this->config = include $path.$file;
+        \Dotenv::load($path);
     }
 
     public function &__get($key)
     {
-        return $this->config[$key];
+        $conf = isset($config[$key]) ? $config[$key] : getenv($key);
+        return $conf;
     }
 
     public function __set($key, $value)

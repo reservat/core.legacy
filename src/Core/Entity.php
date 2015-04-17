@@ -15,7 +15,7 @@ abstract class Entity
         foreach ($data as $key => $value) {
             $isFillable = in_array($key, array_keys($repo::$fillable));
             if (property_exists($entity, $key) || $isFillable) {
-                if($isFillable){
+                if ($isFillable) {
                     $fillableKey = $repo::$fillable[$key];
                     $entity->$fillableKey = $value;
                 } else {
@@ -28,5 +28,4 @@ abstract class Entity
         return $entity;
 
     }
-    
 }
