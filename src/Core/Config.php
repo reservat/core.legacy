@@ -9,12 +9,17 @@ class Config implements \ArrayAccess
 
     public function __construct($path, $file = 'config.php')
     {
-        $this->config = include $path.$file;
+        \Dotenv::load($path);
+        if (file_exists($path . $file)) {
+            $this->config = include $path.$file;
+        }
     }
 
     public function &__get($key)
     {
-        return $this->config[$key];
+        $conf = isset($this->config[$key]) ? $this->config[$key] : getenv($key);
+        $conf = $conf ? $conf: null;
+        return $conf;
     }
 
     public function __set($key, $value)
