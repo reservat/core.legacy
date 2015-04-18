@@ -3,6 +3,7 @@
 namespace Reservat\Core\Repository;
 
 use Reservat\Core\Interfaces\SQLRepositoryInterface;
+use Reservat\Core\Interfaces\EntityInterface;
 
 abstract class PDORepository implements SQLRepositoryInterface, \Iterator
 {
@@ -122,22 +123,21 @@ abstract class PDORepository implements SQLRepositoryInterface, \Iterator
         return $query;
     }
 
-    public function getResults($entity)
+    public function getResults(EntityInterface $entity)
     {
-        $entityClass = '\Reservat\\' . $entity;
-
-        if(!class_exists($entityClass)){
-            throw new \InvalidArgumentException('Entity passed must exist. could not find class Reservat\\' . $entity);
+        
+        if (!count($this->records)) {
+            return false;
         }
 
-        if(count($this->records) > 1){
+        if (count($this->records) > 1) {
             $results = [];
-            foreach($this->records as $record){
-                $results[] = $entityClass::create($record);
+            foreach ($this->records as $record) {
+                $results[] = $entity::create($record, $this);
             }
             return $results;
         } else {
-            return $entityClass::create($this->current());
+            return $entity::create($this->current(), $this);
         }
     }
 
