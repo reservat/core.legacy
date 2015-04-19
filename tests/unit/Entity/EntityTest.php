@@ -3,6 +3,7 @@
 namespace Reservat\Test;
 
 use \Reservat\Core\Config;
+use \Reservat\Repository\BarRepository;
 
 class EntityTest extends \PHPUnit_Framework_TestCase
 {
@@ -19,7 +20,7 @@ class EntityTest extends \PHPUnit_Framework_TestCase
         $bar = \Reservat\Bar::create([
             'name' => 'Paul Westerdale',
             'email' => 'paul@westerdale.me'
-        ]);
+        ], new BarRepository());
 
         $this->assertEquals($bar->getName(), 'Paul Westerdale');
         $this->assertEquals($bar->getEmail(), 'paul@westerdale.me');
@@ -33,7 +34,7 @@ class EntityTest extends \PHPUnit_Framework_TestCase
             'name' => 'Paul Westerdale',
             'email' => 'paul@westerdale.me',
             'shoesize' => 21
-        ]);
+        ], new BarRepository());
         
     }
 }
