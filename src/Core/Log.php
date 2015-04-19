@@ -21,8 +21,6 @@ class Log
 
         $file_path = RESERVAT_DIR . '/../log';
 
-        // TODO: maybe add file logging for lower errors
-
         static::$log = new Logger('bookings');
 
         if (static::$config->LOG_LEVEL < Logger::ERROR) {
@@ -61,12 +59,11 @@ class Log
         if (static::$instance === null) {
             static::$instance = new static();
         }
-
-        static::$log->$func($args);
+        $res = static::$log->$func(...$args);
     }
 
     public static function __callstatic($func, $args)
     {
-        static::log($func, implode($args));
+        static::log($func, $args);
     }
 }
