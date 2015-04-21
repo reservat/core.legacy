@@ -25,24 +25,12 @@ class EntityTest extends \PHPUnit_Framework_TestCase
 
     public function testCreate()
     {
-        $bar = \Reservat\Bar::create([
+        $bar = \Reservat\Bar::createFromArray([
             'name' => 'Paul Westerdale',
             'email' => 'paul@westerdale.me'
         ], new BarRepository($this->di->get('db')));
 
         $this->assertEquals($bar->getName(), 'Paul Westerdale');
         $this->assertEquals($bar->getEmail(), 'paul@westerdale.me');
-    }
-
-    public function testInvalidArgument()
-    {
-
-        $this->setExpectedException('InvalidArgumentException');
-        $bar = \Reservat\Bar::create([
-            'name' => 'Paul Westerdale',
-            'email' => 'paul@westerdale.me',
-            'shoesize' => 21
-        ], new BarRepository($this->di->get('db')));
-        
     }
 }

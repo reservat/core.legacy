@@ -6,6 +6,6 @@ interface ManagerInterface
 {
 
     public function getRepository();
-    public function getEntity();
+    public function getEntity($args);
     public function getDatamapper();
 }

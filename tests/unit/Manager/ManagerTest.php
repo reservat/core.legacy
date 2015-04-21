@@ -59,7 +59,9 @@ SQL;
         
         unset($foo);
 
-        $foo = $fooManager->getRepository()->getById(1)->getResults($fooManager->getEntity());
+        $foo = $fooManager->getRepository()->getById(1)->getResults();
+
+        $foo = \Reservat\Foo::createFromArray($foo);
 
         $this->assertInstanceOf('Reservat\\Foo', $foo);
         $this->assertEquals($foo->getEmail(), 'luke@steadw.eb');
