@@ -123,9 +123,8 @@ abstract class PDORepository implements SQLRepositoryInterface, \Iterator
         return $query;
     }
 
-    public function getResults(EntityInterface $entity)
+    public function getResults()
     {
-        
         if (!count($this->records)) {
             return false;
         }
@@ -133,11 +132,11 @@ abstract class PDORepository implements SQLRepositoryInterface, \Iterator
         if (count($this->records) > 1) {
             $results = [];
             foreach ($this->records as $record) {
-                $results[] = $entity::create($record, $this);
+                $results[] = $record;
             }
             return $results;
         } else {
-            return $entity::create($this->current(), $this);
+            return $this->current();
         }
     }
 

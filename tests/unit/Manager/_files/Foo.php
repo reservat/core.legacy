@@ -43,4 +43,9 @@ class Foo extends Entity implements EntityInterface
             'email' => $this->email
         ];
     }
+
+    public static function createFromArray(array $data)
+    {
+        return new static($data['name'], $data['email']);
+    }
 }
